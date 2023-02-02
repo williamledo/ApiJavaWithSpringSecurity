@@ -1,5 +1,7 @@
 package med.voll.api.domain.paciente;
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -13,9 +15,11 @@ import med.voll.api.domain.endereco.Endereco;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Paciente {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Paciente implements Serializable {
+	
+    private static final long serialVersionUID = 1L;
+    
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
