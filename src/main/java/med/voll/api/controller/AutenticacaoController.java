@@ -22,12 +22,17 @@ public class AutenticacaoController {
 	@PostMapping
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
 		
+		//Convertemos para o "DTO" do SpringSecurity
 		var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
 		
-		var authentication = manager.authenticate(token); //Devolve um objeto que representa o usuário autenticado no sistema
+		//E usamos a AuthenticationManager para disparar o processo de autenticação
+		//e com isso ela chama a AutenticacaoService que chama o repository que vai no banco fazer a consulta
+		//e checa se o usuário e a senha existem, se sim, retorna o ResponseEntity, senão retorna 403
+		var Authentication = manager.authenticate(token);
 		
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok("123456");
 		
 	}
 	
 }
+ 
