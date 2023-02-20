@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import med.voll.api.domain.usuario.DadosAutenticacao;
+import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.infra.security.TokenService;
 
 @RestController
 @RequestMapping("/login")
@@ -18,6 +20,9 @@ public class AutenticacaoController {
 
 	@Autowired
 	private AuthenticationManager manager;
+	
+	@Autowired
+	private TokenService tokenService; 
 	
 	@PostMapping
 	public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
@@ -28,9 +33,9 @@ public class AutenticacaoController {
 		//E usamos a AuthenticationManager para disparar o processo de autenticação
 		//e com isso ela chama a AutenticacaoService que chama o repository que vai no banco fazer a consulta
 		//e checa se o usuário e a senha existem, se sim, retorna o ResponseEntity, senão retorna 403
-		var Authentication = manager.authenticate(token);
+		var authentication = manager.authenticate(token);
 		
-		return ResponseEntity.ok("123456");
+		return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
 		
 	}
 	
