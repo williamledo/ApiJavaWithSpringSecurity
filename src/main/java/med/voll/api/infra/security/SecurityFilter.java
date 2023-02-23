@@ -23,7 +23,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Autowired
 	private UsuarioRepository repository;
 	
-	@Override      // 
+	@Override      //  Toda requisição ele irá entrar nesse filtro
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
