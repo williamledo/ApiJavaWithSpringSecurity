@@ -31,7 +31,7 @@ public class SecurityConfiguration {
 				.anyRequest().authenticated() // Qualquer outra requisição, o usuário precisa estar autenticado
 				.and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //Configurando o meu filtro para vir antes do spring, assim ele irá falar que meu usuário está logado
 				.build(); //desabilitando o processo de autenticação que o spring dá um formulário e a aplicação é stateful, agora é stateless
-		
+	
 	}
 	
 	@Bean // Estou mostrando para o spring como ele injeta objetos
