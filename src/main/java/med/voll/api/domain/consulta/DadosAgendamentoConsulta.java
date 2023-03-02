@@ -17,7 +17,6 @@ public record DadosAgendamentoConsulta (
 		
 		@NotNull
 		@Future //Só aceita datas no futuro
-		@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 		LocalDateTime data,
 		
 		Especialidade especialidade
